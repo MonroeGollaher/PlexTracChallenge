@@ -56,6 +56,7 @@ class UserController {
 
   public async get(request, h): Promise<Hapi.ServerResponse> {
     try {
+      debugger
       const credentials: Credentials = request.auth.credentials;
 
       const userId: string = request.params.userId;
