@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './UserList.css'
-import axios from 'axios'
 
 function UserList() {
 
