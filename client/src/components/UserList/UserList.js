@@ -2,21 +2,26 @@ import React, { useState, useEffect } from 'react';
 import './UserList.css'
 import axios from 'axios'
 
-const UserList = () => {
+function UserList() {
 
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    fetch('/user').then(res => {
+    fetch('http://localhost:5000/user').then(res => {
       if(res.ok){
-        return res.json
+        return res.json()
       }
-    }).then(jsonResponse => console.log(jsonResponse))
+    }).then(jsonResponse => setUsers(jsonResponse))
   }, []); 
+
+  console.log(users)
 
   return (
     <div>
-      <h1>User List</h1>
+      UserList: 
+      {
+        users.map(user => <li>{ user.firstName }</li>)
+      }
     </div>
   )
 }

@@ -10,7 +10,8 @@ function App() {
     <div className="App">
       <UserList />
     </div>
-  );
+  )
+  
 }
 
 export default App;
