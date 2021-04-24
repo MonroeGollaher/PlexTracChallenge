@@ -1,16 +1,19 @@
 import React from 'react';
-import UserList from '../User/UserList/UserList'
+import UserList from '../Users/UserList/UserList'
 import LoginButton from "../Auth/Login/Login";
-import NewUserComponent from "../User/NewUser/NewUser";
+import NewUserComponent from "../Users/NewUser/NewUser";
+import UpdateUser from "../Users/UpdateUser/UpdateUser";
 
 
 const HomeComponent = () => {
+
   return (
     <div>
       Home
       <UserList />
       <LoginButton />
       <NewUserComponent />
+      <UpdateUser />
     </div>
   )
 }
