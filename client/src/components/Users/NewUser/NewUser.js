@@ -1,53 +1,79 @@
-import React, { useState } from 'react';
-import './NewUser.css'
-import axios from 'axios'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateField,
+  getFirst,
+  getLast,
+  getEmail,
+  getUsername,
+  getPassword,
+} from "../../../modules";
 
+import "./NewUser.css";
+import axios from "axios";
+import { createUser } from "../../../modules/api";
 
 const NewUserComponent = () => {
+  const dispatch = useDispatch();
+  const newUser = {
+    firstName: useSelector(getFirst),
+    lastName: useSelector(getLast),
+    email: useSelector(getEmail),
+    username: useSelector(getUsername),
+    password: useSelector(getPassword),
+  };
 
-  const url='http://localhost:5000/user'
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUser(newUser);
+  };
 
-  const [newUser, setnewUser] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-  })
-
-  function createUser(e){
-    e.preventDefault()
-    axios.post(url, {
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
-      email: newUser.email,
-      password: newUser.password,
-      username: newUser.username,
-    })
-    .then(res => {
-      console.log(res.data);
-    })
-  }
-
-  function handle(e){
-    const newData = { ... newUser }
-    newData[e.target.id] = e.target.value
-    setnewUser(newData)
-  }
+  const handleNewUser = ({ target: { id, value } }) => {
+    dispatch(updateField({ fieldName: id, value }));
+  };
 
   return (
     <div>
-      <form onSubmit={ (e) => createUser(e)}>
-        <input onChange={ (e) => handle(e) } id="firstName" value={ newUser.firstName } placeholder="First Name" type="text"></input>
-        <input onChange={ (e) => handle(e) } id="lastName" value={ newUser.lastName } placeholder="Last Name" type="text"></input>
-        <input onChange={ (e) => handle(e) } id="email" value={ newUser.email } placeholder="Email" type="text"></input>
-        <input onChange={ (e) => handle(e) } id="password" value={ newUser.password } placeholder="Password" type="password"></input>
-        <input onChange={ (e) => handle(e) } id="username" value={ newUser.username } placeholder="username" type="text"></input>
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleNewUser}
+          value={newUser.firstName}
+          id="first"
+          placeholder="First Name"
+          type="text"
+        />
+        <input
+          onChange={handleNewUser}
+          value={newUser.lastName}
+          id="last"
+          placeholder="Last Name"
+          type="text"
+        />
+        <input
+          onChange={handleNewUser}
+          value={newUser.email}
+          id="email"
+          placeholder="Email"
+          type="text"
+        />
+        <input
+          onChange={handleNewUser}
+          value={newUser.password}
+          id="password"
+          placeholder="Password"
+          type="password"
+        />
+        <input
+          onChange={handleNewUser}
+          value={newUser.username}
+          id="username"
+          placeholder="username"
+          type="text"
+        />
         <button>Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default NewUserComponent
-
+export default NewUserComponent;
