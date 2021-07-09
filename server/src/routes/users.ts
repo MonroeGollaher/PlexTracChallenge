@@ -12,22 +12,22 @@ export default function getRoutes(server: Hapi.Server): void {
       // auth: "jwt",
       validate: {
         params: {
-          userId: Joi.string().required()
+          userId: Joi.string().required(),
         },
-        failAction
-      }
+        failAction,
+      },
     },
-    handler: UserController.get
+    handler: UserController.get,
   });
 
   server.route({
     method: "GET",
     path: "/user",
     options: {
-      auth: false
+      auth: false,
       // auth: "jwt"
     },
-    handler: UserController.list
+    handler: UserController.list,
   });
 
   server.route({
@@ -38,12 +38,12 @@ export default function getRoutes(server: Hapi.Server): void {
       // auth: "jwt",
       validate: {
         params: {
-          userId: Joi.string().required()
+          userId: Joi.string().required(),
         },
-        failAction
-      }
+        failAction,
+      },
     },
-    handler: UserController.delete
+    handler: UserController.delete,
   });
 
   server.route({
@@ -54,18 +54,18 @@ export default function getRoutes(server: Hapi.Server): void {
       // auth: "jwt",
       validate: {
         params: {
-          userId: Joi.string().required()
+          userId: Joi.string().required(),
         },
         payload: {
           username: Joi.string(),
           firstName: Joi.string(),
           lastName: Joi.string(),
-          email: Joi.string()
+          email: Joi.string(),
         },
-        failAction
-      }
+        failAction,
+      },
     },
-    handler: UserController.update
+    handler: UserController.update,
   });
 
   server.route({
@@ -79,11 +79,13 @@ export default function getRoutes(server: Hapi.Server): void {
           firstName: Joi.string().required(),
           lastName: Joi.string().required(),
           email: Joi.string().required(),
-          password: Joi.string().required()
+          password: Joi.string().required(),
+          birthYear: Joi.string().required(),
+          color: Joi.string().required(),
         },
-        failAction
-      }
+        failAction,
+      },
     },
-    handler: UserController.create
+    handler: UserController.create,
   });
 }

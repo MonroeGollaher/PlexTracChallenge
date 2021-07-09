@@ -30,7 +30,7 @@ class UserRepository {
   }
 
   public async doesExist(user: User): Promise<boolean> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       UserModel.find({ email: user.email }, (error: Error, users: User[]) => {
         if (error || !users.length) {
           resolve(false);
@@ -46,7 +46,7 @@ class UserRepository {
     const $user = new UserModel({
       ...user,
       password,
-      admin: false
+      admin: false,
     });
     return $user.save();
   }
@@ -75,7 +75,7 @@ class UserRepository {
         } else if (!users.length) {
           reject(`No user found with id`);
         } else {
-          users.forEach(user => {
+          users.forEach((user) => {
             delete user.password;
           });
           resolve(users);
@@ -86,7 +86,7 @@ class UserRepository {
 
   public async deleteById(userId: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      UserModel.deleteOne({ _id: userId }, error => {
+      UserModel.deleteOne({ _id: userId }, (error) => {
         if (error) {
           reject(error);
         } else {

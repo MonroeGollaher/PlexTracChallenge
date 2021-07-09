@@ -89,7 +89,7 @@ class UserController {
       const response: Login = {
         // eslint-disable-next-line @typescript-eslint/camelcase
         auth_token: token,
-        user
+        user,
       };
 
       return h.response(response);
