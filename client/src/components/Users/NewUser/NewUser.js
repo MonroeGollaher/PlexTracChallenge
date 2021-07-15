@@ -7,11 +7,10 @@ import {
   getEmail,
   getUsername,
   getPassword,
+  createUser,
 } from "../../../modules";
 
 import "./NewUser.css";
-import axios from "axios";
-import { createUser } from "../../../modules/api";
 
 const NewUserComponent = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ const NewUserComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser(newUser);
+    dispatch(createUser(newUser));
   };
 
   const handleNewUser = ({ target: { id, value } }) => {

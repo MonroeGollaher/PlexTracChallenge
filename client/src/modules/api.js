@@ -1,14 +1,13 @@
-import axios from "axios";
+import { api } from "../api";
 
-const api = axios.create({
-  baseURL: "http://localhost:5000/",
-});
-
-export const createUser = async (userData) => {
-  const res = await api.post(`/user`, userData);
+export const createNewUser = async (userData) => {
+  const res = await api.post("/user", userData);
+  console.log(userData, "userData");
+  console.log(res, "res");
   return res.data;
 };
 
-export default {
-  createUser,
+export const getAllUsers = async () => {
+  const res = await api.get("/user");
+  return res.data;
 };

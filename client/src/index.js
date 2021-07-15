@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./rootReducer";
 import createSagaMiddleware from "redux-saga";
-
+import rootSaga from "./rootSaga";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
@@ -16,6 +16,8 @@ const store = configureStore({
   reducer: rootReducer,
   middleware: [sagaMiddleware],
 });
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <React.StrictMode>

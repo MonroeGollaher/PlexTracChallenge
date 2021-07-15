@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./UserList.css";
 import User from "../User/User";
+import { loadUIUsers } from "../../../modules";
 
 function UserList() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/user")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((jsonResponse) => setUsers(jsonResponse));
-  }, []);
-
-  console.log("Users:", users);
+  const dispatch = useDispatch();
+  const users = useSelector(loadUIUsers);
 
   return (
     <div className="container">
