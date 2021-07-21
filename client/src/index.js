@@ -8,8 +8,9 @@ import rootReducer from "./rootReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
 import { Auth0Provider } from "@auth0/auth0-react";
+require("dotenv").config();
 
-const { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
+const { REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENT_ID } = process.env;
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
@@ -22,8 +23,8 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain={REACT_APP_DOMAIN}
-      clientId={REACT_APP_CLIENT_ID}
+      domain={REACT_APP_AUTH0_DOMAIN}
+      clientId={REACT_APP_AUTH0_CLIENT_ID}
       redirectUri={window.location.origin}
     >
       <Provider store={store}>
