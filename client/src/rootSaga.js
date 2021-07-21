@@ -1,7 +1,7 @@
 import { all } from "redux-saga/effects";
 
-import exampleSaga from "./modules/sagas";
-import usersSaga from "./modules/sagas";
+import exampleSaga from "./userAdmin/modules/sagas";
+import usersSaga from "./userAdmin/modules/sagas";
 
 /**
  * Root Saga

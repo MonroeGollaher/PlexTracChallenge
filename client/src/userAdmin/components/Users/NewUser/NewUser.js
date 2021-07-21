@@ -8,6 +8,8 @@ import {
   getUsername,
   getPassword,
   createUser,
+  getBirthYear,
+  getFavoriteColor,
 } from "../../../modules";
 
 import "./NewUser.css";
@@ -20,6 +22,8 @@ const NewUserComponent = () => {
     email: useSelector(getEmail),
     username: useSelector(getUsername),
     password: useSelector(getPassword),
+    birthYear: useSelector(getBirthYear),
+    favoriteColor: useSelector(getFavoriteColor),
   };
 
   const handleSubmit = (e) => {
@@ -37,14 +41,14 @@ const NewUserComponent = () => {
         <input
           onChange={handleNewUser}
           value={newUser.firstName}
-          id="first"
+          id="firstName"
           placeholder="First Name"
           type="text"
         />
         <input
           onChange={handleNewUser}
           value={newUser.lastName}
-          id="last"
+          id="lastName"
           placeholder="Last Name"
           type="text"
         />
@@ -53,6 +57,20 @@ const NewUserComponent = () => {
           value={newUser.email}
           id="email"
           placeholder="Email"
+          type="text"
+        />
+        <input
+          onChange={handleNewUser}
+          value={newUser.birthYear}
+          id="birthYear"
+          placeholder="Birth Year"
+          type="text"
+        />
+        <input
+          onChange={handleNewUser}
+          value={newUser.favoriteColor}
+          id="favoriteColor"
+          placeholder="Favorite Color"
           type="text"
         />
         <input

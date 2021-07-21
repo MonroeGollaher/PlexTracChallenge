@@ -1,4 +1,4 @@
-import { userAdminReducer } from "./modules";
+import { userAdminReducer } from "./userAdmin/modules";
 
 const reducer = {
   userAdmin: userAdminReducer,

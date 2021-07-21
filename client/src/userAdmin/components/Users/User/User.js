@@ -1,37 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "react-modal";
 import axios from "axios";
-import { deleteUser } from "../../../modules";
-// import { deleteUser } from "../../../actions/users";
+import { deleteUser, editUser, getActiveUser } from "../../../modules";
 
 const User = ({ firstName, lastName, email, username, id }) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [editedUser, setEditUser] = useState({
+  const [editedUser, setEditData] = useState({
     firstName: firstName,
     lastName: lastName,
     username: username,
     email: email,
+    id: id,
   });
 
-  // function updateUser(e) {
-  //   e.preventDefault();
-  //   axios.put(url + id, {
-  //     firstName: editedUser.firstName,
-  //   });
-  //   setModalIsOpen(false);
-  // }
-
-  function handleChange(e) {
-    const editData = { editedUser };
-    editData[e.target.id] = e.target.value;
-    setEditUser(editData);
+  function updateUser(e) {
+    e.preventDefault();
+    dispatch(editUser(editedUser));
+    setModalIsOpen(false);
   }
 
   const handleRemove = (id) => {
-    console.log(id);
     dispatch(deleteUser(id));
+    setModalIsOpen(false);
   };
 
   return (
@@ -68,9 +60,20 @@ const User = ({ firstName, lastName, email, username, id }) => {
           <input
             type="text"
             placeholder={firstName}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) =>
+              setEditData({ ...editedUser, firstName: e.target.value })
+            }
             id="firstName"
             value={editedUser.firstName}
+          />
+          <input
+            type="text"
+            placeholder={lastName}
+            onChange={(e) =>
+              setEditData({ ...editedUser, lastName: e.target.value })
+            }
+            id="lastName"
+            value={editedUser.lastName}
           />
           <button>Submit</button>
         </form>

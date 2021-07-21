@@ -1,11 +1,9 @@
-import React from 'react';
-import UserList from '../Users/UserList/UserList'
-import LoginButton from "../Auth/Login/Login";
+import React from "react";
+import UserList from "../Users/UserList/UserList";
 import NewUserComponent from "../Users/NewUser/NewUser";
-
+import LoginButton from "../Auth/Login/Login";
 
 const HomeComponent = () => {
-
   return (
     <div>
       Home
@@ -13,7 +11,7 @@ const HomeComponent = () => {
       <LoginButton />
       <NewUserComponent />
     </div>
-  )
-}
+  );
+};
 
-export default HomeComponent
+export default HomeComponent;

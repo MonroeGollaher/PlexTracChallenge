@@ -16,7 +16,7 @@ async function start(): Promise<void> {
   try {
     await server.register({
       plugin: require("good"),
-      options
+      options,
     });
 
     await server.register({
@@ -24,8 +24,8 @@ async function start(): Promise<void> {
       options: {
         prettyPrint: process.env.NODE_ENV !== "production",
         // Redact Authorization headers, see https://getpino.io/#/docs/redaction
-        redact: ["req.headers.authorization"]
-      }
+        redact: ["req.headers.authorization"],
+      },
     });
 
     await server.register([require("hapi-auth-jwt2")]);
@@ -33,7 +33,7 @@ async function start(): Promise<void> {
       // todo: hide this somehow, is in one other place
       key:
         "HaFwVcntGquwlJkFY5VU4kan0TKkT2mnBTJ381drEyoiShvBQKh4VJbbc+y8Oezv20QdLHGJBC3LLDvjPKu4rwa6Zv9FPrsqRQh/j+Z0G/8GyollQjZGUAJJoLb2FfAdBpuGM+AxWh54iQJos4+t49mO8BGh5CmnMEK+9QYIkiG84BQEiQ+uviQFHoPQ57P/vO6CW25Xu2JCBR2DIp4Z7wcXe8yPU0RPz9WH6sEiQdnShMg4glWSq5oiuWIWsCrZwxIC263Mz6Cs89h79RIC5J0lQFYGTdkOGHNe9NORihDvRrraReCohIBxVonVLQqxH/wtgGyIKyWZgHufNidofA==", // Never Share your secret key todo: change
-      validate // validate function defined above
+      validate, // validate function defined above
     });
 
     server.auth.default("jwt");
