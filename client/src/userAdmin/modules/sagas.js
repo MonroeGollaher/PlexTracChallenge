@@ -43,9 +43,6 @@ function* deleteUserSaga({ payload: id }) {
 function* editUserSaga({ payload }) {
   try {
     const { id, ...rest } = payload;
-    console.log(id, "saga");
-    console.log(rest, "rest");
-    // console.log(rest, "rest");
     yield call(updateUser, id, rest);
   } catch (e) {
     yield put(console.log(e));
